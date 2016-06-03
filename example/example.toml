@@ -1,0 +1,9 @@
+[linux.project]
+name = "SimpleDemo"
+target = "SimpleDemo"
+lang = "cpp"
+compiler = "g++"
+inc = ["../src"]
+libs = ["simplefilewatcher"]
+lib_dir = ["../"]
+static_lib = false

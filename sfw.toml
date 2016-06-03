@@ -1,0 +1,11 @@
+[linux.project]
+arflags = "rcs"
+name = "simplefilewatcher"
+target = "libsimplefilewatcher.a"
+lang = "cpp"
+compiler = "g++"
+inc = ["src"]
+exclude = [
+	"example/",
+]
+static_lib = true
