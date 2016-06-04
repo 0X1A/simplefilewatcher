@@ -6,7 +6,6 @@
 
 #ifndef _FW_FILEWATCHERIMPL_H_
 #define _FW_FILEWATCHERIMPL_H_
-#pragma once
 
 #include "FileWatcher.h"
 

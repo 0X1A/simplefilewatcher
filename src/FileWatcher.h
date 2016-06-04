@@ -4,7 +4,6 @@
 
 #ifndef _FW_FILEWATCHER_H_
 #define _FW_FILEWATCHER_H_
-#pragma once
 
 #include <stdexcept>
 #include <string>
