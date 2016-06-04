@@ -8,7 +8,7 @@ BINDIR	=
 LIBDIR	=
 TARGET	= libsimplefilewatcher.a
 LINK	= g++
-CFLAGS	= 
+CFLAGS	= -std=c++11
 LFLAGS	=
 LIBS	= 
 INCDIR	= -Isrc

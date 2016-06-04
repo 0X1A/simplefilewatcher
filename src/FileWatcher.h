@@ -7,6 +7,7 @@
 
 #include <stdexcept>
 #include <string>
+#include <memory>
 
 namespace FW
 {
@@ -94,7 +95,7 @@ public:
 
 private:
 	/// The implementation
-	FileWatcherImpl *mImpl;
+	std::unique_ptr<FileWatcherImpl> mImpl;
 
 }; // end FileWatcher
 

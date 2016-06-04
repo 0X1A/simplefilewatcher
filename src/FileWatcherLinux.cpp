@@ -41,9 +41,7 @@ FileWatcherLinux::FileWatcherLinux()
 //--------
 FileWatcherLinux::~FileWatcherLinux()
 {
-	WatchMap::iterator iter = mWatches.begin();
-	WatchMap::iterator end = mWatches.end();
-	for (; iter != end; ++iter) {
+	for (auto iter = mWatches.begin(); iter != mWatches.end(); ++iter) {
 		delete iter->second;
 	}
 	mWatches.clear();
@@ -80,9 +78,7 @@ WatchID FileWatcherLinux::addWatch(const String &directory,
 //--------
 void FileWatcherLinux::removeWatch(const String &directory)
 {
-	WatchMap::iterator iter = mWatches.begin();
-	WatchMap::iterator end = mWatches.end();
-	for (; iter != end; ++iter) {
+	for (auto iter = mWatches.begin(); iter != mWatches.end(); ++iter) {
 		if (directory == iter->second->mDirName) {
 			removeWatch(iter->first);
 			return;
@@ -112,7 +108,7 @@ void FileWatcherLinux::update()
 {
 	FD_SET(mFD, &mDescriptorSet);
 
-	int ret = select(mFD + 1, &mDescriptorSet, NULL, NULL, &mTimeOut);
+	int ret = select(mFD + 1, &mDescriptorSet, nullptr, nullptr, &mTimeOut);
 	if (ret < 0) {
 		perror("select");
 	} else if (FD_ISSET(mFD, &mDescriptorSet)) {

@@ -20,13 +20,12 @@ namespace FW
 {
 
 //--------
-FileWatcher::FileWatcher() { mImpl = new FILEWATCHER_IMPL(); }
+FileWatcher::FileWatcher() { mImpl.reset(new FILEWATCHER_IMPL()); }
 
 //--------
 FileWatcher::~FileWatcher()
 {
-	delete mImpl;
-	mImpl = 0;
+	mImpl.reset();
 }
 
 //--------

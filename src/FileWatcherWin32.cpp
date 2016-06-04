@@ -71,7 +71,7 @@ void CALLBACK WatchCallback(DWORD dwErrorCode, DWORD dwNumberOfBytesTransfered,
 				int count = WideCharToMultiByte(
 				    CP_ACP, 0, pNotify->FileName,
 				    pNotify->FileNameLength / sizeof(WCHAR),
-				    szFile, MAX_PATH - 1, NULL, NULL);
+				    szFile, MAX_PATH - 1, nullptr, nullptr);
 				szFile[count] = TEXT('\0');
 			}
 #endif
@@ -92,7 +92,7 @@ bool RefreshWatch(WatchStruct *pWatch, bool _clear)
 {
 	return ReadDirectoryChangesW(
 		   pWatch->mDirHandle, pWatch->mBuffer, sizeof(pWatch->mBuffer),
-		   pWatch->mIsRecursive, pWatch->mNotifyFilter, NULL,
+		   pWatch->mIsRecursive, pWatch->mNotifyFilter, nullptr,
 		   &pWatch->mOverlapped, _clear ? 0 : WatchCallback) != 0;
 }
 
@@ -129,12 +129,12 @@ WatchStruct *CreateWatch(LPCTSTR szDirectory, bool recursive,
 	pWatch->mDirHandle =
 	    CreateFile(szDirectory, FILE_LIST_DIRECTORY,
 		       FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
-		       NULL, OPEN_EXISTING,
-		       FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED, NULL);
+		       nullptr, OPEN_EXISTING,
+		       FILE_FLAG_BACKUP_SEMANTICS | FILE_FLAG_OVERLAPPED, nullptr);
 
 	if (pWatch->mDirHandle != INVALID_HANDLE_VALUE) {
 		pWatch->mOverlapped.hEvent =
-		    CreateEvent(NULL, TRUE, FALSE, NULL);
+		    CreateEvent(nullptr, TRUE, FALSE, nullptr);
 		pWatch->mNotifyFilter = mNotifyFilter;
 		pWatch->mIsRecursive = recursive;
 
@@ -147,7 +147,7 @@ WatchStruct *CreateWatch(LPCTSTR szDirectory, bool recursive,
 	}
 
 	HeapFree(GetProcessHeap(), 0, pWatch);
-	return NULL;
+	return nullptr;
 }
 
 #pragma endregion
@@ -221,7 +221,7 @@ void FileWatcherWin32::removeWatch(WatchID watchid)
 //--------
 void FileWatcherWin32::update()
 {
-	MsgWaitForMultipleObjectsEx(0, NULL, 0, QS_ALLINPUT, MWMO_ALERTABLE);
+	MsgWaitForMultipleObjectsEx(0, nullptr, 0, QS_ALLINPUT, MWMO_ALERTABLE);
 }
 
 //--------
